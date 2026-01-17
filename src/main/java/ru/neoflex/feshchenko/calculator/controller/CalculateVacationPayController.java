@@ -7,6 +7,8 @@ import ru.neoflex.feshchenko.calculator.dto.VacationPayRequest;
 import ru.neoflex.feshchenko.calculator.dto.VacationPayResponse;
 import ru.neoflex.feshchenko.calculator.service.CalculateVacationPayService;
 
+import javax.validation.Valid;
+
 @RestController
 public class CalculateVacationPayController {
     private final CalculateVacationPayService calculateVacationPayService;
@@ -16,7 +18,7 @@ public class CalculateVacationPayController {
     }
 
     @GetMapping("/calculacte")
-    public VacationPayResponse calculateVacationPay(@RequestBody VacationPayRequest request) {
+    public VacationPayResponse calculateVacationPay(@Valid @RequestBody VacationPayRequest request) {
         return new VacationPayResponse(calculateVacationPayService.calculateVacationPay(request.getAvgSalary(), request.getVacationDays(), request.getStartDate(), request.getEndDate()));
     }
 }
