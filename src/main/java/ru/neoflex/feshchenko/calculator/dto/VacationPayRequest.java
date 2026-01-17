@@ -1,10 +1,17 @@
 package ru.neoflex.feshchenko.calculator.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
 public class VacationPayRequest {
-    private double avgSalary;
+    @NotNull(message = "Salary is not specified")
+    @Positive(message = "The salary cannot be negative or zero")
+    private Double avgSalary;
+
+    @Positive(message = "The number of vacation days cannot be negative or zero")
     private Integer vacationDays;
+
     private LocalDate startDate;
     private LocalDate endDate;
 
